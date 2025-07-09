@@ -18,9 +18,9 @@
         </ul>
     </div> --}}
 
-    <div class="card mb-3">
+    {{-- <div class="card mb-3">
         <div class="card-body py-3">
             <h1 class="mb-0 text-center">หน้าหลัก</h1>
         </div>
-    </div>
+    </div> --}}
 @endsection
