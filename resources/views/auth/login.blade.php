@@ -60,17 +60,14 @@
 
     <div class="container-xxl">
         <div class="authentication-wrapper authentication-basic container-p-y">
-            <div class="authentication-inner">
+            <div class="">
                 <!-- Register -->
                 <div class="card">
                     <div class="card-body">
                         <!-- Logo -->
                         <div class="app-brand justify-content-center">
                             <a href="index.html" class="app-brand-link gap-2">
-                                <span class="app-brand-logo demo">
-
-                                </span>
-                                <span class="app-brand-text demo text-body fw-bolder mt-3">ลงชื่อเข้าใช้งานระบบ</span>
+                                <span class="app-brand-text demo text-body fw-bolder mt-2 mb-1" style="font-size: 20px;">ลงชื่อเข้าใช้งานระบบ</span>
                             </a>
                         </div>
 
