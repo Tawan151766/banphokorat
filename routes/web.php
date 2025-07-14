@@ -9,6 +9,12 @@ use App\Http\Controllers\activity\AdminActivityController;
 use App\Http\Controllers\activity\ActivityController;
 use App\Http\Controllers\performance_results\AdminPerformanceResultsController;
 use App\Http\Controllers\performance_results\PerformanceResultsController;
+use App\Http\Controllers\laws_and_regulations\AdminLawsAndRegulationsController;
+use App\Http\Controllers\laws_and_regulations\LawsAndRegulationsController;
+use App\Http\Controllers\procurement_plan\AdminProcurementPlanController;
+use App\Http\Controllers\procurement_plan\ProcurementPlanController;
+use App\Http\Controllers\procurement\AdminProcurementController;
+use App\Http\Controllers\procurement\ProcurementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +40,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth', 'admin'])->group(function () {
     //Admin
-    Route::get('/admin', [AdminController::class, 'Admin'])->name('Admin');
+    Route::get('/Admin', [AdminController::class, 'Admin'])->name('Admin');
 
     //Activity
     Route::get('/Admin/Activity/page', [AdminActivityController::class, 'ActivityHome'])->name('ActivityHome');
@@ -71,4 +77,34 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/Admin/PerformanceResults/show/section/topic/detail/{id}', [AdminPerformanceResultsController::class, 'PerfResultsShowDetails'])->name('PerfResultsShowDetails');
     Route::post('/Admin/PerformanceResults/show/section/topic/detail/create/{id}', [AdminPerformanceResultsController::class, 'PerfResultsDetailsCreate'])->name('PerfResultsDetailsCreate');
     Route::delete('/Admin/PerformanceResults/show/section/topic/detail/delete/{id}', [AdminPerformanceResultsController::class, 'PerfResultsDetailsDelete'])->name('PerfResultsDetailsDelete');
+
+    //LawsAndRegulations
+    Route::get('/Admin/LawsAndRegulations/page', [AdminLawsAndRegulationsController::class, 'LawsAndRegulationsType'])->name('LawsAndRegulationsType');
+    Route::post('/Admin/LawsAndRegulations/create/name', [AdminLawsAndRegulationsController::class, 'LawsAndRegulationsTypeCreate'])->name('LawsAndRegulationsTypeCreate');
+    Route::put('/Admin/LawsAndRegulations/{id}/update', [AdminLawsAndRegulationsController::class, 'LawsAndRegulationsUpdate'])->name('LawsAndRegulationsUpdate');
+    Route::delete('/Admin/LawsAndRegulations/{id}/delete', [AdminLawsAndRegulationsController::class, 'LawsAndRegulationsDelete'])->name('LawsAndRegulationsDelete');
+
+    Route::get('/Admin/LawsAndRegulations/show/section/{id}', [AdminLawsAndRegulationsController::class, 'LawsAndRegulationsShowSection'])->name('LawsAndRegulationsShowSection');
+    Route::post('/Admin/LawsAndRegulations/show/section/create/{id}', [AdminLawsAndRegulationsController::class, 'LawsAndRegulationsSectionCreate'])->name('LawsAndRegulationsSectionCreate');
+    Route::put('/Admin/LawsAndRegulations/show/section/update/{id}', [AdminLawsAndRegulationsController::class, 'LawsAndRegulationsSectionUpdate'])->name('LawsAndRegulationsSectionUpdate');
+    Route::delete('/Admin/LawsAndRegulations/show/section/delete/{id}', [AdminLawsAndRegulationsController::class, 'LawsAndRegulationsSectionDelete'])->name('LawsAndRegulationsSectionDelete');
+
+    Route::get('/Admin/LawsAndRegulations/show/section/detail/{id}', [AdminLawsAndRegulationsController::class, 'LawsAndRegulationsShowDetails'])->name('LawsAndRegulationsShowDetails');
+    Route::post('/Admin/LawsAndRegulations/show/section/detail/create/{id}', [AdminLawsAndRegulationsController::class, 'LawsAndRegulationsDetailCreate'])->name('LawsAndRegulationsDetailCreate');
+    Route::delete('/Admin/LawsAndRegulations/show/section/detail/delete/{id}', [AdminLawsAndRegulationsController::class, 'LawsAndRegulationsDetailDelete'])->name('LawsAndRegulationsDetailDelete');
+
+    //ProcurementPlan
+    Route::get('/Admin/ProcurementPlan/page', [AdminProcurementPlanController::class, 'ProcurementPlanType'])->name('ProcurementPlanType');
+    Route::post('/Admin/ProcurementPlan/create/name', [AdminProcurementPlanController::class, 'ProcurementPlanTypeCreate'])->name('ProcurementPlanTypeCreate');
+    Route::put('/Admin/ProcurementPlan/{id}/update', [AdminProcurementPlanController::class, 'ProcurementPlanTypeUpdate'])->name('ProcurementPlanTypeUpdate');
+    Route::delete('/Admin/ProcurementPlan/{id}/delete', [AdminProcurementPlanController::class, 'ProcurementPlanTypeDelete'])->name('ProcurementPlanTypeDelete');
+    Route::get('/Admin/ProcurementPlan/show/detail/{id}', [AdminProcurementPlanController::class, 'ProcurementPlanShowDetail'])->name('ProcurementPlanShowDetail');
+    Route::post('/Admin/ProcurementPlan/show/detail/create/{id}', [AdminProcurementPlanController::class, 'ProcurementPlanDetailCreate'])->name('ProcurementPlanDetailCreate');
+    Route::delete('/Admin/ProcurementPlan/show/detail/delete/{id}', [AdminProcurementPlanController::class, 'ProcurementPlanDetailDelete'])->name('ProcurementPlanDetailDelete');
+
+    //admin Procurement
+    Route::get('/Admin/Procurement/page', [AdminProcurementController::class, 'ProcurementHome'])->name('ProcurementHome');
+    Route::post('/Admin/Procurement/create', [AdminProcurementController::class, 'ProcurementCreate'])->name('ProcurementCreate');
+    Route::delete('/Admin/Procurement/delete{id}', [AdminProcurementController::class, 'ProcurementDelete'])->name('ProcurementDelete');
+    Route::put('/Admin/Procurement/update/{id}', [AdminProcurementController::class, 'ProcurementUpdate'])->name('ProcurementUpdate');
 });

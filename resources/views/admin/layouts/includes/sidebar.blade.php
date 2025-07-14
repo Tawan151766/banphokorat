@@ -2,7 +2,7 @@
     <div class="sidebar-logo">
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="dark">
-            <a href="{{ url('/') }}" class="logo d-flex align-items-center text-white fw-bold"
+            <a href="#" class="logo d-flex align-items-center text-white fw-bold"
                 style="font-size: 18px;">
                 <i class="fas fa-coins me-2"></i> ระบบจัดการข้อมูล
             </a>
@@ -35,12 +35,12 @@
                     </a>
                 </li>
 
-                {{-- <li class="nav-item {{ request()->is('') ? 'active' : '' }}">
-                    <a href="#">
+                <li class="nav-item {{ request()->is('Admin/LawsAndRegulations*') ? 'active' : '' }}">
+                    <a href="{{ route('LawsAndRegulationsType') }}">
                         <i class="fas fa-cogs"></i>
-                        <p>แผนจัดซื้อจัดจ้าง</p>
+                        <p>กฎหมายและระเบียบ</p>
                     </a>
-                </li> --}}
+                </li>
 
                 <li class="nav-section">
                     <h4 class="text-section">เนื้อหา</h4>
@@ -57,6 +57,28 @@
                     <a href="{{ route('ActivityHome') }}">
                         <i class="fas fa-cogs"></i>
                         <p>กิจกรรม</p>
+                    </a>
+                </li>
+
+                <li class="nav-section">
+                    <h4 class="text-section">ประกาศงานคลัง</h4>
+                </li>
+
+                <li class="nav-item {{ request()->is('Admin/Procurement/*') ? 'active' : '' }}">
+                    <a href="{{ route('ProcurementHome') }}">
+                        <i class="fas fa-cogs"></i>
+                        <p>ประกาศจัดซื้อจัดจ้าง</p>
+                    </a>
+                </li>
+
+                <li class="nav-section">
+                    <h4 class="text-section">แบนเนอร์</h4>
+                </li>
+
+                <li class="nav-item {{ request()->is('Admin/ProcurementPlan/*') ? 'active' : '' }}">
+                    <a href="{{ route('ProcurementPlanType') }}">
+                        <i class="fas fa-cogs"></i>
+                        <p>แผนจัดซื้อจัดจ้าง</p>
                     </a>
                 </li>
 

@@ -60,30 +60,30 @@
 
     <div class="container-xxl">
         <div class="authentication-wrapper authentication-basic container-p-y">
-            <div class="">
+            <div class="" style="width: 25%;">
                 <!-- Register -->
                 <div class="card">
                     <div class="card-body">
                         <!-- Logo -->
                         <div class="app-brand justify-content-center">
                             <a href="index.html" class="app-brand-link gap-2">
-                                <span class="app-brand-text demo text-body fw-bolder mt-2 mb-1" style="font-size: 20px;">ลงชื่อเข้าใช้งานระบบ</span>
+                                <span class="app-brand-text demo text-body fw-bolder mt-2 mb-2" style="font-size: 20px;">ลงชื่อเข้าใช้งานระบบ</span>
                             </a>
                         </div>
 
                         <form id="formAuthentication" class="mb-3" action="{{ route('Login') }}" method="POST">
                             @csrf
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
+                                <label for="email" class="form-label" style="font-size: 11px;">Email</label>
                                 <input type="text" class="form-control" id="email" name="email"
-                                    placeholder="Enter your email or username" autofocus />
+                                    placeholder="Enter your email" autofocus />
                                 @error('email')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="mb-3 form-password-toggle">
                                 <div class="d-flex justify-content-between">
-                                    <label class="form-label" for="password">Password</label>
+                                    <label class="form-label" for="password" style="font-size: 11px;">Password</label>
                                 </div>
                                 <div class="input-group input-group-merge">
                                     <input type="password" id="password" class="form-control" name="password"
