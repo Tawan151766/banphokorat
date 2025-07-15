@@ -66,7 +66,7 @@ class AdminProcurementController extends Controller
             'date' => 'nullable|date',
             'title_name' => 'nullable|string',
             'file_post' => 'nullable|array',
-            'file_post.*' => 'file|mimes:pdf|max:2048',
+            'file_post.*' => 'file|mimes:jpg,jpeg,png,pdf,doc,docx,xls,xlsx',
             'delete_files' => 'nullable|array',
             'delete_files.*' => 'exists:post_pdfs,id',
         ]);

@@ -36,7 +36,7 @@ class AdminPressReleaseController extends Controller
             'details' => 'nullable|string',
             'title_image' => 'file|mimes:jpg,jpeg,png',
             'file_post' => 'nullable|array',
-            'file_post.*' => 'file|mimes:jpg,jpeg,png,pdf',
+            'file_post.*' => 'file|mimes:jpg,jpeg,png,pdf,doc,docx,xls,xlsx',
             'file_video' => 'nullable|file|mimes:mp4,avi,mov,wmv',
         ]);
 
@@ -66,11 +66,13 @@ class AdminPressReleaseController extends Controller
         if ($request->hasFile('file_post')) {
             foreach ($request->file('file_post') as $file) {
 
+                $extension = strtolower($file->getClientOriginalExtension());
                 $filename = time() . '_' . $file->getClientOriginalName();
 
-                if ($file->getClientOriginalExtension() == 'pdf') {
+                if (in_array($extension, ['pdf', 'doc', 'docx', 'xls', 'xlsx'])) {
 
-                    $path = $file->storeAs('pdf', $filename, 'public');
+                    $folder = in_array($extension, ['pdf']) ? 'pdf' : 'documents';
+                    $path = $file->storeAs($folder, $filename, 'public');
 
                     PostPdf::create([
                         'post_detail_id' => $postDetail->id,
@@ -205,9 +207,15 @@ class AdminPressReleaseController extends Controller
         // อัปโหลดไฟล์ใหม่
         if ($request->hasFile('file_post')) {
             foreach ($request->file('file_post') as $file) {
+
+                $extension = strtolower($file->getClientOriginalExtension());
                 $filename = time() . '_' . $file->getClientOriginalName();
-                if ($file->getClientOriginalExtension() == 'pdf') {
-                    $path = $file->storeAs('pdf', $filename, 'public');
+
+                if (in_array($extension, ['pdf', 'doc', 'docx', 'xls', 'xlsx'])) {
+
+                    $folder = in_array($extension, ['pdf']) ? 'pdf' : 'documents';
+                    $path = $file->storeAs($folder, $filename, 'public');
+
                     PostPdf::create([
                         'post_detail_id' => $postDetail->id,
                         'post_pdf_file' => $path,
