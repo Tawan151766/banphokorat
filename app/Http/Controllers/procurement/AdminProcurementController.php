@@ -31,7 +31,7 @@ class AdminProcurementController extends Controller
             'date' => 'nullable|date',
             'title_name' => 'nullable|string',
             'file_post' => 'nullable|array',
-            'file_post.*' => 'file' // ตรวจสอบขนาดไฟล์
+            'file_post.*' => 'file|mimes:pdf,jpg,jpeg,png', // ตรวจสอบขนาดไฟล์
         ]);
 
         $postDetail = PostDetail::create([
@@ -40,15 +40,20 @@ class AdminProcurementController extends Controller
             'title_name' => $request->title_name,
         ]);
 
-        // ตรวจสอบและอัปโหลดไฟล์ PDF
         if ($request->hasFile('file_post')) {
             foreach ($request->file('file_post') as $file) {
-                if ($file->getClientOriginalExtension() !== 'pdf') {
-                    return redirect()->back()->with('error', 'รองรับเฉพาะไฟล์ PDF เท่านั้น!');
+                $extension = strtolower($file->getClientOriginalExtension());
+
+                // เงื่อนไขตรวจสอบไฟล์
+                if (!in_array($extension, ['pdf', 'jpg', 'jpeg', 'png'])) {
+                    return redirect()->back()->with('error', 'รองรับเฉพาะไฟล์ PDF, JPG, JPEG และ PNG เท่านั้น!');
                 }
 
                 $filename = time() . '_' . $file->getClientOriginalName();
-                $path = $file->storeAs('pdf', $filename, 'public');
+
+                // เก็บแยก folder ตามประเภทไฟล์ (แนะนำเพื่อความเป็นระเบียบ)
+                $folder = in_array($extension, ['jpg', 'jpeg', 'png']) ? 'images' : 'pdf';
+                $path = $file->storeAs($folder, $filename, 'public');
 
                 PostPdf::create([
                     'post_detail_id' => $postDetail->id,
@@ -90,11 +95,20 @@ class AdminProcurementController extends Controller
             }
         }
 
-        // อัปโหลดไฟล์ใหม่ถ้ามี
         if ($request->hasFile('file_post')) {
             foreach ($request->file('file_post') as $file) {
+                $extension = strtolower($file->getClientOriginalExtension());
+
+                // เงื่อนไขตรวจสอบไฟล์
+                if (!in_array($extension, ['pdf', 'jpg', 'jpeg', 'png'])) {
+                    return redirect()->back()->with('error', 'รองรับเฉพาะไฟล์ PDF, JPG, JPEG และ PNG เท่านั้น!');
+                }
+
                 $filename = time() . '_' . $file->getClientOriginalName();
-                $path = $file->storeAs('pdf', $filename, 'public');
+
+                // เก็บแยก folder ตามประเภทไฟล์ (แนะนำเพื่อความเป็นระเบียบ)
+                $folder = in_array($extension, ['jpg', 'jpeg', 'png']) ? 'images' : 'pdf';
+                $path = $file->storeAs($folder, $filename, 'public');
 
                 PostPdf::create([
                     'post_detail_id' => $postDetail->id,

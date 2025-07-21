@@ -43,7 +43,7 @@
                                 <div class="mb-3">
                                     <label for="file_post" class="form-label">แนบไฟล์</label>
                                     <input type="file" class="form-control" id="file_post" name="file_post[]" multiple>
-                                    <small class="text-muted">ประเภทไฟล์ที่รองรับ: pdf (ขนาดไม่เกิน 10MB)</small>
+                                    <small class="text-muted">ประเภทไฟล์ที่รองรับ: jpg,jpeg,png,pdf (ขนาดไม่เกิน 10MB)</small>
                                     <!-- แสดงรายการไฟล์ที่แนบ -->
                                     <div id="file-list" class="mt-1">
                                         <div class="d-flex flex-wrap gap-3"></div>
@@ -155,7 +155,7 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="file_post{{ $postDetail->id }}" class="form-label">อัปโหลดไฟล์ PDF
+                                        <label for="file_post{{ $postDetail->id }}" class="form-label">อัปโหลดไฟล์ jpg,jpeg,png,pdf
                                             ใหม่</label>
                                         <input type="file" class="form-control" id="file_post{{ $postDetail->id }}"
                                             name="file_post[]" multiple>
