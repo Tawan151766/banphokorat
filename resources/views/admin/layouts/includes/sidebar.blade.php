@@ -42,6 +42,20 @@
                     </a>
                 </li>
 
+                <li class="nav-item {{ request()->is('Admin/ItaEvaluation*') ? 'active' : '' }}">
+                    <a href="{{ route('ItaEvaluationIndex') }}">
+                        <i class="fas fa-chart-line"></i>
+                        <p>การประเมิน ITA</p>
+                    </a>
+                </li>
+
+                <li class="nav-item {{ request()->is('Admin/Staff*') ? 'active' : '' }}">
+                    <a href="{{ route('StaffIndex') }}">
+                        <i class="fas fa-users"></i>
+                        <p>จัดการพนักงาน</p>
+                    </a>
+                </li>
+
                 <li class="nav-section">
                     <h4 class="text-section">เนื้อหา</h4>
                 </li>
