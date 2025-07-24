@@ -56,6 +56,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item {{ request()->is('Admin/Menu*') ? 'active' : '' }}">
+                    <a href="{{ route('MenuIndex') }}">
+                        <i class="fas fa-bars"></i>
+                        <p>จัดการเมนู</p>
+                    </a>
+                </li>
+
                 <li class="nav-section">
                     <h4 class="text-section">เนื้อหา</h4>
                 </li>

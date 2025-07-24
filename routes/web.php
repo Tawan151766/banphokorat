@@ -1,4 +1,7 @@
 <?php
+// ...existing code...
+    // Menu Management
+// ...existing code...
 
 use App\Http\Controllers\activity\ActivityController;
 use App\Http\Controllers\activity\AdminActivityController;
@@ -7,6 +10,7 @@ use App\Http\Controllers\ita_evaluation\AdminItaEvaluationController;
 use App\Http\Controllers\ita_evaluation\ItaEvaluationController;
 use App\Http\Controllers\laws_and_regulations\AdminLawsAndRegulationsController;
 use App\Http\Controllers\laws_and_regulations\LawsAndRegulationsController;
+use App\Http\Controllers\Menu\AdminMenuController;
 use App\Http\Controllers\performance_results\AdminPerformanceResultsController;
 use App\Http\Controllers\performance_results\PerformanceResultsController;
 use App\Http\Controllers\press_release\AdminPressReleaseController;
@@ -43,6 +47,7 @@ Route::post('/register', [AuthController::class, 'Register'])->name('Register');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth', 'admin'])->group(function () {
+    
     // Admin
     Route::get('/Admin', [AdminController::class, 'Admin'])->name('Admin');
 
@@ -128,6 +133,22 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/Admin/Staff/create', [AdminStaffController::class, 'StaffCreate'])->name('StaffCreate');
     Route::put('/Admin/Staff/{id}/update', [AdminStaffController::class, 'StaffUpdate'])->name('StaffUpdate');
     Route::delete('/Admin/Staff/{id}/delete', [AdminStaffController::class, 'StaffDelete'])->name('StaffDelete');
+
+    // Menu Management
+    Route::get('/Admin/Menu/page', [AdminMenuController::class, 'MenuIndex'])->name('MenuIndex');
+    Route::get('/Admin/Menu/create', [AdminMenuController::class, 'MenuCreatePage'])->name('MenuCreatePage');
+    Route::post('/Admin/Menu/create', [AdminMenuController::class, 'MenuCreate'])->name('MenuCreate');
+    Route::get('/Admin/SubMenu/create', [AdminMenuController::class, 'SubMenuCreatePage'])->name('SubMenuCreatePage');
+    Route::post('/Admin/SubMenu/create', [AdminMenuController::class, 'SubMenuCreate'])->name('SubMenuCreate');
+    Route::put('/Admin/Menu/{id}/update', [AdminMenuController::class, 'MenuUpdate'])->name('MenuUpdate');
+    Route::delete('/Admin/Menu/{id}/delete', [AdminMenuController::class, 'MenuDelete'])->name('MenuDelete');
+    Route::get('/Admin/SmallSubMenu/create', [AdminMenuController::class, 'SmallSubMenuCreatePage'])->name('SmallSubMenuCreatePage');
+    Route::post('/Admin/SmallSubMenu/create', [AdminMenuController::class, 'SmallSubMenuCreate'])->name('SmallSubMenuCreate');
+    // Menu Attachments
+    Route::get('/Admin/Menu/{menuId}/attachments', [AdminMenuController::class, 'MenuAttachments'])->name('MenuAttachments');
+    Route::post('/Admin/Menu/{menuId}/attachments/create', [AdminMenuController::class, 'AttachmentCreate'])->name('AttachmentCreate');
+    Route::put('/Admin/Menu/{menuId}/attachment/{attachmentId}/update', [AdminMenuController::class, 'AttachmentUpdate'])->name('AttachmentUpdate');
+    Route::delete('/Admin/Menu/attachment/{id}/delete', [AdminMenuController::class, 'AttachmentDelete'])->name('AttachmentDelete');
 });
 
 // Frontend Routes
