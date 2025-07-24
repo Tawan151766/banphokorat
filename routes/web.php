@@ -10,7 +10,7 @@ use App\Http\Controllers\ita_evaluation\AdminItaEvaluationController;
 use App\Http\Controllers\ita_evaluation\ItaEvaluationController;
 use App\Http\Controllers\laws_and_regulations\AdminLawsAndRegulationsController;
 use App\Http\Controllers\laws_and_regulations\LawsAndRegulationsController;
-use App\Http\Controllers\Menu\AdminMenuController;
+use App\Http\Controllers\menu\AdminMenuController;
 use App\Http\Controllers\performance_results\AdminPerformanceResultsController;
 use App\Http\Controllers\performance_results\PerformanceResultsController;
 use App\Http\Controllers\press_release\AdminPressReleaseController;
