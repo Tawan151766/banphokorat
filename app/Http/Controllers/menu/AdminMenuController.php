@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers\Menu;
+namespace App\Http\Controllers\menu;
 
 use App\Http\Controllers\Controller;
 use App\Models\Menu;
