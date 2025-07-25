@@ -35,9 +35,9 @@ use Illuminate\Support\Facades\Route;
  * |
  */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+Route::get('/', [App\Http\Controllers\staff\StaffController::class, 'executiveBoard']);
+
+Route::get('/login', [AuthController::class, 'LoginPage'])->name('Login');
 
 // auth
 Route::get('/LoginPage', [AuthController::class, 'LoginPage'])->name('LoginPage');

@@ -17,6 +17,13 @@ class StaffController extends Controller
         return view('frontend.staff.index', compact('leaders', 'coleaders', 'employees'));
     }
 
+    // เพิ่มเมธอดสำหรับ executive board
+    public function executiveBoard()
+    {
+        $staffs = Staff::orderBy('full_name')->get();
+        return view('welcome_banpho', compact('staffs'));
+    }
+
     public function getStaffByRole($role)
     {
         $staff = Staff::where('role', $role)->orderBy('full_name')->get();
