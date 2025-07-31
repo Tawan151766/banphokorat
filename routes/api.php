@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// File upload API for Next.js or other clients
+Route::post('/upload-file', [\App\Http\Controllers\Api\FileUploadController::class, 'upload']);
